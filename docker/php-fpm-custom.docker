@@ -25,6 +25,7 @@ RUN docker-php-ext-install sockets &&  docker-php-ext-install exif && docker-php
 RUN apt-get install -y libxml2-dev && docker-php-ext-install soap && docker-php-ext-install zip
 # Memory Limit
 RUN echo "memory_limit=250M" > $PHP_INI_DIR/conf.d/memory-limit.ini
+# RUN echo "memory_limit= -1" > $PHP_INI_DIR/conf.d/memory-limit.ini
 
 # ioncube loader
 RUN curl  -fSL 'http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz' -o ioncube.tar.gz

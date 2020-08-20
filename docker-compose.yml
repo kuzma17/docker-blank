@@ -6,17 +6,12 @@ services:
       dockerfile: docker/nginx-custom.docker
     ports:
       - "8080:80"
-#    volumes:
-#      - app_volume:/var/www
+
     volumes:
       - type: bind
         source: ./public
         target: /var/www
-#          device: ./
 
-#      - type: bind
-#        source: ./
-#        target: /var/www
     links:
       - php-fpm
 
@@ -39,7 +34,6 @@ services:
     links:
       - mysql
       - redis
-
 
   php-cli:
     build:
@@ -70,14 +64,7 @@ services:
       - type: bind
         source: ./public
         target: /var/www
-#    environment:
-#      - "DB_PORT=${MYSQL_DB_PORT}"
-#      - "DB_HOST=mysql"
-#      - "REDIS_PORT=6379"
-#      - "REDIS_HOST=redis"
-#    links:
-#      - mysql
-#      - redis
+
     tty: true
 
   mysql:
@@ -111,25 +98,3 @@ services:
       - "MYSQL_USER=${MYSQL_USER}"
       - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
-
-#volumes:
-#  app_volume:
-#    driver: local
-#    driver_opts:
-#      type: none
-##      o: "addr=10.40.0.199,nolock,soft,rw"
-#      device: ./
-#      o: bind
-#  app_volume:
-#    driver: local   >docker volume create --driver local --opt device=:./ --opt type=volume   app_volume
-#    driver_opts:
-#      type: none
-#      device: ./
-#      o: bind
-#  dbdata:
-#volumes:
-#  app_volume:
-#    driver_opts:
-#      type: none
-#      device: ./
-#      o: bind
